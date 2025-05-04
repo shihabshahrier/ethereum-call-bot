@@ -5,6 +5,7 @@ import time
 def get_eth_price():
     url = "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
     response = requests.get(url)
+    print(response.status_code)
     return response.json()['ethereum']['usd']
 
 def check_price(price, target, up = True):
@@ -14,7 +15,7 @@ def check_price(price, target, up = True):
         return price <= target
     
 def main():
-    target_price = 1842.00
+    target_price = 1822.00
     up = False
     while True:
         eth_price = get_eth_price()
@@ -27,7 +28,7 @@ def main():
         else:
             print("Target price not reached.")
         
-        time.sleep(30)  
+        time.sleep(15)  
 
 
 if __name__ == "__main__":
